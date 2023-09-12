@@ -18,7 +18,16 @@ mongoose.connect(process.env.Connection_String,{
 //importing the user MODEL
 const User = require('./UserModel/userModel');
 app.post('/api',async(req,res)=>{
-    const {name} = req.body;
+   let name;
+     if(req.body && req.body.name){
+        name = req.body.name
+     }else if(req.query && req.query.name){
+        name = req.query.name
+        
+     }else{
+         return res.json('Failed')
+     }
+    
     try{
         const highestUserIdUser = await User.findOne({}).sort({ id: -1 });
 
@@ -32,7 +41,7 @@ app.post('/api',async(req,res)=>{
           const {name,id} = newUser
              return res.json({name,id})
         }else{
-            res.json('Failed to Create User')
+            res.json('Failed to create.')
         }
       
 
@@ -92,14 +101,19 @@ app.delete('/api/:id',async(req,res)=>{
 //Updating a user using its ID
 app.put('/api/:id',async(req,res)=>{
     const {id} = req.params
-    const {name}= req.body
+    let name;
+       if(req.body && req.body.name){
+           name = req.body.name
+       }else if(req.query && req.query.name){
+          name = req.query.name
+       }
     try{
         const updateUser = await User.findOneAndUpdate({id:id},{name:name})
         if(updateUser){
-        res.json('User updated Successfully')
-        return res.json(updateUser)
+           const {name,id} = updateUser
+          return res.json({name,id})
         }else{
-            res.json('Failed to update User')
+            res.json('Failed to Update.')
         }
     }catch(e){
        return  res.json(e)
