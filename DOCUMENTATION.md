@@ -1,16 +1,16 @@
 Table of Contents
 
 API Endpoints
-Create a New Person
-Fetch Details of a Person
-Modify Details of an Existing Person
-Remove a Person
+    Create a New Person
+    Fetch Details of a Person
+   Modify Details of an Existing Person
+    Remove a Person
 Request and Response Formats
-Create a New Person
-Fetch Details of a Person
-Modify Details of an Existing Person
-Remove a Person
-Sample Responses
+  Create a New Person
+  Fetch Details of a Person
+  Modify Details of an Existing Person
+  Remove a Person
+ Sample Responses
 Dynamic Parameter Handling
 Usage Examples
 Known Limitations
